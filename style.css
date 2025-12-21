@@ -1,0 +1,896 @@
+/* Bu CSS kodu, 'main.html' dosyasındaki <style> etiketleri arasından çıkarılmıştır. */
+
+/* ================================================= */
+/* TEMA DEĞİŞKENLERİ - LIGHT (Varsayılan) */
+/* ================================================= */
+:root {
+    /* Üst ve Alt Kısımlar: Koyu Kahve */
+    --bg-header-footer: #3e2723;
+    --text-header-footer: #f5f1e9;
+
+    /* Orta Kısım */
+    --bg-primary: #f5f1e9;
+    --bg-gallery-item: #ffffff;
+    --text-primary: #4b3621;
+    --border-color: #d7ccc8;
+
+    /* 🔥 EKSİK OLANLAR (BAŞLIKLAR İÇİN) */
+    --accent-color: #5d4037;     /* Kahverengi vurgu */
+    --accent-hover: #4b3621;
+    --text-secondary: #3e2723;
+    --text-tertiary: #6d4c41;
+    --shadow-color: rgba(62, 39, 35, 0.25);
+}
+
+
+/* Üst Başlık */
+header {
+    background-color: var(--bg-header-footer) !important;
+    color: var(--text-header-footer) !important;
+}
+
+/* Alt Bilgi */
+footer {
+    background-color: var(--bg-header-footer) !important;
+    color: var(--text-header-footer) !important;
+    padding: 30px;
+    text-align: center;
+}
+
+/* Eserlerin Olduğu Orta Alan */
+main, .gallery-container {
+    background-color: var(--bg-primary); /* Burası tam istediğin krem rengi */
+    padding: 20px 0;
+}
+
+/* Arama Butonu - Kahverengi ile uyumlu */
+.search-btn {
+    background-color: #6d4c41 !important; /* Kahverengi */
+    color: white !important;
+}
+
+.search-btn:hover {
+    background-color: #5d4037 !important; /* Daha koyu kahverengi hover efekti */
+}
+
+/* ================================================= */
+/* TEMA DEĞİŞKENLERİ - DARK MODE */
+/* ================================================= */
+[data-theme="dark"] {
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-header: #1f1f1f;
+    --text-header: #eeeeee;
+    --text-primary: #eeeeee;
+    --text-secondary: #4aa8f2; /* Daha parlak mavi vurgu */
+    --text-tertiary: #a0a0a0;
+    --accent-color: #4aa8f2;
+    --border-color: #333333;
+    --bg-welcome: #1a1a1a;
+    --bg-gallery-item: #2a2a2a;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Genel Stil Uygulaması */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-primary); 
+    color: var(--text-primary);          
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+header {
+    background-color: var(--bg-header);   
+    color: var(--text-header);           
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    position: relative; /* Butonları konumlandırmak için eklendi */
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+/* ============================================ */
+/* YENİ TEMA DÜĞMELERİ STİLİ (SOL ÜST KÖŞE) */
+/* ============================================ */
+#theme-buttons {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    display: flex;
+    gap: 10px; /* Düğmeler arası boşluk */
+    z-index: 10; /* Diğer içeriklerin üzerinde kalmasını sağlar */
+}
+
+.theme-toggle-btn {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    outline: none;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    font-weight: 600;
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-secondary);
+}
+/* ============================================ */
+
+/* ARAMA ÖZELLİĞİ CSS */
+#search-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#search-input {
+    width: 90%;
+    max-width: 500px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid var(--accent-color); 
+    border-radius: 25px;
+    background-color: var(--bg-secondary); 
+    color: var(--text-primary);            
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#search-input {
+    background-color: var(--bg-primary); /* KREM */
+    color: var(--text-primary);
+}
+
+#search-input::placeholder {
+    color: var(--text-tertiary); 
+}
+
+.gallery-item.hidden {
+    display: none;
+}
+/* ARAMA ÖZELLİĞİ CSS SONU */
+
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: var(--bg-secondary); 
+    box-shadow: 0 0 20px var(--shadow-color); 
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#gallery {
+    padding: 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color); 
+}
+
+#gallery h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    color: var(--text-secondary); 
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    font-style: italic;
+
+}
+
+#gallery h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color); 
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    justify-content: center;
+}
+
+.gallery-item {
+    background-color: var(--bg-gallery-item); 
+    border: 1px solid var(--border-color);    
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px var(--shadow-color); 
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border-color); 
+}
+
+.gallery-item-info {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.gallery-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25em;
+    color: var(--text-secondary); 
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-style: italic; /* BU SATIRI EKLE */
+}
+
+.gallery-item span {
+    font-size: 0.9em;
+    color: var(--text-tertiary); 
+    font-weight: 600;
+}
+
+#reports-section {
+    padding: 40px;
+}
+
+.report {
+    display: none;
+    background-color: var(--bg-secondary); 
+    padding: 30px;
+    border: 1px solid var(--border-color);  
+    border-radius: 8px;
+    margin-bottom: 30px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.report h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent-color); 
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color); 
+    padding-bottom: 10px;
+    font-style: italic;
+}
+
+.report img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 25px auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px var(--shadow-color); 
+}
+
+.original-text {
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1em; 
+    line-height: 1.5; 
+    color: var(--text-primary); 
+}
+
+.active-report {
+    display: block;
+}
+
+#welcome-message {
+    text-align: center;
+    padding: 50px 30px;
+    background-color: var(--bg-primary); /* Krem rengi arka plan */
+    border-radius: 8px;
+    margin-bottom: 30px;
+    color: var(--text-primary); /* Koyu kahverengi yazı */
+}
+
+#welcome-message h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    color: var(--text-primary); /* Koyu kahverengi başlık */
+    margin-bottom: 15px;
+}
+
+footer {
+    background-color: var(--bg-header-footer) !important; /* Kahverengi arka plan */
+    color: var(--text-header-footer) !important; /* Krem rengi yazı */
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: #d2b48c; /* Footer içindeki linkler taba rengi */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Video Intro Katmanı */
+#video-intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+}
+
+#intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#skip-btn {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    z-index: 10000;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+#sound-notice {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    pointer-events: none; /* Tıklamayı videoya/arkaya geçirir */
+    animation: pulse 2s infinite; /* Dikkat çekmesi için hafif parlayacak */
+    z-index: 10001;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+/* Proje Bilgi Paneli Tasarımı */
+.project-info-sidebar {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.sidebar-block h3 {
+    color: var(--accent-color);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--bg-primary);
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    font-style: italic;
+}
+
+.sidebar-block p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+.sidebar-list {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-list li {
+    font-size: 0.9rem;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+    color: var(--text-primary);
+}
+
+.news-items li span {
+    background: #d7ccc8;        /* AÇIK TABA */
+    color: #3e2723;             /* KOYU KAHVE YAZI */
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+/* Sayfa sağında durmasını istersen (Geniş ekranlar için) */
+@media (min-width: 1200px) {
+    .project-info-sidebar {
+        position: sticky;
+        top: 20px;
+        float: right;
+        width: 320px;
+        display: block;
+        margin-left: 30px;
+    }
+}
+/* Haber Linki Butonları */
+.news-link {
+    background-color: var(--accent-color) !important;
+    color: #f4ece1 !important; /* Krem rengi yazı */
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.news-link:hover {
+    background-color: var(--accent-hover) !important;
+}
+
+/* Başlıkların Alt Çizgisi */
+.news-header {
+    color: var(--accent-color);
+    border-bottom: 3px solid var(--border-color);
+}
+#welcome-message {
+    background-color: #f5f1e9;      /* İç kısım KREM */
+    color: #4b3621;                 /* Yazı koyu kahve */
+    border: 3px solid #5d4037;      /* KUTU KAHVERENGİ */
+    border-radius: 12px;
+    padding: 50px 30px;
+    box-shadow: 0 10px 25px rgba(62, 39, 35, 0.35);
+}
+.project-info-sidebar {
+    margin-top: 60px;
+}
+.news-items li span {
+    background: #d7ccc8;
+    color: #3e2723;
+    font-size: 0.7rem;
+}
+.news-items li span {
+    background: none !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+/* ========================================= */
+/* SIDEBAR MINI TIMELINE STYLES */
+/* ========================================= */
+
+.mini-timeline-container {
+    position: relative;
+    padding-left: 20px; /* Çizgi için boşluk */
+    margin-top: 15px;
+    max-height: 500px; /* Çok uzarsa kaydırma çubuğu çıkar */
+    overflow-y: auto;  /* Scroll özelliği */
+    padding-right: 5px; /* Scrollbar için boşluk */
+}
+
+/* Dikey Çizgi */
+.timeline-guide-line {
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #d7ccc8; /* Açık kahve */
+    z-index: 0;
+}
+
+/* Yüzyıl Başlıkları */
+.timeline-century-badge {
+    background-color: var(--accent-color); /* Koyu Kahve */
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    position: relative;
+    z-index: 1;
+    transform: translateX(-10px); /* Çizgiyi ortalamak için */
+}
+
+/* Tekil Olay Kutusu */
+.timeline-entry {
+    position: relative;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: transform 0.2s;
+}
+
+.timeline-entry:hover {
+    transform: translateX(3px);
+}
+
+/* Durum Noktası (Yeşil/Kırmızı) */
+.status-dot {
+    position: absolute;
+    left: -19px; /* Çizgi üzerine denk getirme */
+    top: 15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--bg-secondary);
+    z-index: 1;
+}
+
+/* İade Edildi (Yeşil) */
+.timeline-entry.returned {
+    border-left: 3px solid #10b981; /* Yeşil */
+}
+.timeline-entry.returned .status-dot {
+    background-color: #10b981;
+}
+
+/* Yurt Dışında (Kırmızı) */
+.timeline-entry.abroad {
+    border-left: 3px solid #ef4444; /* Kırmızı */
+}
+.timeline-entry.abroad .status-dot {
+    background-color: #ef4444;
+}
+
+/* İçerik Yazıları */
+.entry-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.entry-content strong {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.entry-content span {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+/* Durum Etiketleri (Küçük haplar) */
+.status-tag {
+    font-size: 0.65rem;
+    font-weight: bold;
+    margin-top: 5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.status-tag.return {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.status-tag.exile {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Scrollbar'ı özelleştirme (Webkit tarayıcılar için) */
+.mini-timeline-container::-webkit-scrollbar {
+    width: 4px;
+}
+.mini-timeline-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+.mini-timeline-container::-webkit-scrollbar-thumb {
+    background: #d7ccc8;
+    border-radius: 2px;
+}
+/* style.css dosyasının en altına ekle */
+h1, h2, h3, .timeline-century-badge {
+    font-style: italic !important;
+}
+/* ========================================= */
+/* MAKALELER BÖLÜMÜ STİLLERİ (SIDEBAR)       */
+/* ========================================= */
+
+/* Linkin kapsayıcı alanı */
+.article-list li a {
+    text-decoration: none;      /* Alt çizgiyi kaldır */
+    display: block;             /* Tüm satırı tıklanabilir yap */
+    transition: transform 0.2s ease, background-color 0.2s;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+/* Üzerine gelince (Hover) efekti */
+.article-list li a:hover {
+    transform: translateX(5px); /* Sağa doğru 5px kaydır */
+    background-color: rgba(0, 0, 0, 0.05); /* Çok hafif bir koyuluk ekle */
+}
+
+/* Makale Başlığı */
+.article-list li a strong {
+    color: var(--text-secondary); /* Temadaki koyu başlık rengini kullan */
+    font-family: 'Playfair Display', serif; /* Senin fontun */
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* Makale Kaynağı / Açıklaması */
+.article-list li a span {
+    font-size: 0.8rem;
+    color: var(--text-tertiary); /* Temadaki gri/açık kahve renk */
+    font-style: italic;          /* İtalik yaparak kaynak olduğunu belli et */
+}
+/* ========================================= */
+/* HABER ARŞİVİ - KAYNAKÇA STİLİ             */
+/* ========================================= */
+
+.bibliography-list {
+    padding-left: 0;
+    list-style: none;
+}
+
+.bibliography-list li {
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 3px solid var(--border-color); /* Sol tarafa ince çizgi */
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.bibliography-list li:hover {
+    border-left-color: var(--accent-color); /* Üzerine gelince çizgi rengi değişir */
+    transform: translateX(5px);
+}
+
+.bibliography-list a {
+    text-decoration: none;
+    display: block;
+}
+
+/* Haber Başlığı (Tırnak içindeki kısım) */
+.bib-title {
+    display: block;
+    color: var(--text-primary);
+    font-family: 'Playfair Display', serif; /* Senin ana fontun */
+    font-weight: bold;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-style: italic; /* Başlıkları italik yaptık */
+}
+
+/* Kaynakça Bilgisi (Gazete adı, tarih vb.) */
+.bib-source {
+    display: block;
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+    margin-top: 4px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase; /* Küçük harflerle büyük yazım */
+    letter-spacing: 0.5px;
+}
+
+/* Hover durumunda başlık rengi */
+.bibliography-list li:hover .bib-title {
+    color: var(--accent-color);
+}
+/* ========================================= */
+/* İADE EDİLEN ESERLER TABLOSU (SIDEBAR)     */
+/* ========================================= */
+
+.returned-table-container {
+    max-height: 400px; /* Tablonun maksimum yüksekliği */
+    overflow-y: auto;  /* Dikey kaydırma çubuğu ekler */
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+
+.returned-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem; /* Yazı boyutu sidebar için küçültüldü */
+    font-family: 'Open Sans', sans-serif;
+}
+
+.returned-items-table th {
+    background-color: var(--accent-color); /* Temanızın kahverengisi */
+    color: #fff;
+    padding: 8px 5px;
+    text-align: left;
+    position: sticky; /* Başlığı sabitle */
+    top: 0;
+    z-index: 2;
+    font-weight: 600;
+}
+
+.returned-items-table td {
+    padding: 6px 5px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    vertical-align: top;
+}
+
+.returned-items-table tr:hover {
+    background-color: rgba(0,0,0,0.05); /* Üzerine gelince hafif koyulaşsın */
+}
+
+/* Tablo Sütun Genişlikleri */
+.col-id { width: 10%; text-align: center; color: var(--text-tertiary); }
+.col-name { width: 70%; }
+.col-year { width: 20%; text-align: right; font-weight: bold; color: var(--accent-color); }
+
+/* Scrollbar Tasarımı (Webkit) */
+.returned-table-container::-webkit-scrollbar {
+    width: 6px;
+}
+.returned-table-container::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 3px;
+}
+.returned-table-container::-webkit-scrollbar-track {
+    background-color: var(--bg-primary);
+}
+/* ========================================= */
+/* CHATBOT TASARIMI (SİTEYE UYUMLU)          */
+/* ========================================= */
+
+.chat-container {
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary); /* Krem zemin */
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 400px; /* Yüksekliği ayarlayabilirsiniz */
+}
+
+.chat-box {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #fdfbf7; /* Çok açık krem */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.85rem;
+}
+
+/* Mesaj Balonları */
+.chat-message {
+    padding: 8px 12px;
+    border-radius: 12px;
+    max-width: 85%;
+    line-height: 1.4;
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+/* Botun Mesajı (Sol) */
+.bot-message {
+    background-color: #e6e0d4; /* Açık kahve/gri */
+    color: var(--text-primary);
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+/* Kullanıcının Mesajı (Sağ) */
+.user-message {
+    background-color: var(--accent-color); /* Sitenin ana kahverengisi */
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+/* Hazır Butonlar */
+.chat-suggestions {
+    padding: 5px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+}
+
+.chat-suggestions button {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    border-radius: 15px;
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.chat-suggestions button:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* Alt Giriş Alanı */
+.chat-input-area {
+    display: flex;
+    padding: 8px;
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    outline: none;
+    font-size: 0.85rem;
+}
+
+.chat-input-area .send-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0 15px;
+    margin-left: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
