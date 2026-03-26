@@ -894,3 +894,136 @@ h1, h2, h3, .timeline-century-badge {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* Ana Düzen */
+.main-layout {
+    display: flex;
+    transition: all 0.3s ease; /* Yumuşak geçiş için */
+}
+
+.content-area {
+    flex: 1; /* Sidebar kapandığında burası tüm alanı kaplar */
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.project-info-sidebar {
+    width: 350px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Sidebar kapandığında uygulanacak stil */
+.sidebar-closed .project-info-sidebar {
+    width: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    opacity: 0;
+}
+
+/* Butonun stili */
+#sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* Ana Layout Yapısı */
+.main-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.4s ease;
+}
+
+.content-area {
+    flex: 1;
+    padding: 20px;
+    transition: all 0.4s ease;
+}
+
+/* GALERİ AYARI: Sidebar açıkken 3'lü, kapalıyken 4'lü yapacak sihirli kısım */
+.gallery-container {
+    display: grid;
+    /* Sidebar açıkken (varsayılan) 3 sütun */
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
+    gap: 20px;
+    width: 100%;
+}
+
+/* SİDEBAR KAPANDIĞINDA: Eserleri 4'lü sıraya diz */
+.sidebar-closed .gallery-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Sidebar Tasarımı */
+.project-info-sidebar {
+    width: 350px;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    border-left: 1px solid var(--border-color);
+}
+
+/* Sidebar Kapalıyken */
+.sidebar-closed .project-info-sidebar {
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Eserlerin (Gallery Item) genişliği artık % değil, grid'e uyumlu olmalı */
+.gallery-item {
+    width: 100% !important; /* Grid kutusuna tam yayıl */
+    margin: 0 !important;
+}
+/* Sidebar açıkken varsayılan durum (3 sütun) */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
+    gap: 20px;
+    width: 100%;
+    transition: all 0.4s ease;
+}
+
+/* SİDEBAR KAPANDIĞINDA: Eserleri 4'lü sıraya diz */
+.sidebar-closed .gallery-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Sidebar'ın kendisi için geçiş efekti */
+.project-info-sidebar {
+    transition: all 0.4s ease;
+}
+
+/* Sidebar kapandığında onu gizle */
+.sidebar-closed .project-info-sidebar {
+    display: none;
+}
+/* Sidebar açıkken (Varsayılan) */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 sütun */
+    gap: 20px;
+}
+
+/* SİDEBAR KAPANDIĞINDA 4'LÜ YAP */
+body.sidebar-closed .gallery-container {
+    grid-template-columns: repeat(4, 1fr) !important;
+}
+
+/* Sidebar'ın kendisini gizle */
+body.sidebar-closed .project-info-sidebar {
+    display: none;
+}
